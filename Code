@@ -56,21 +56,22 @@ void mousePressed() {
   float landing = ycoord(velocity, distance, mouseY);
   for( float yPos = mouseY; yPos <= landing; yPos++){
     drawDart(mouseX, yPos);
-    //if (pair.x <= dartBoardRadius, landing >= dartBoardRadius, score++);
-    //^ this was a previous attempt to make the score happen when you hit the target
-     
+    if (mouseX <= 460 & mouseX > 310 & mouseY <= 460 & mouseY > 310 )
+      text("Good Job!",mouseX,mouseY);
     }
   Pair pair = new Pair(); 
   pair.x=mouseX; 
   pair.y = landing;
-  coords.add(pair);
-  
+  //if ()
+ // text("Good Job!",mouseX,mouseY);
+  println(mouseY);
+
+//  coords.add(pair);
 }
   
  float ycoord(float velocity, float distance, float landing) { 
     float time = distance/velocity; 
     return 16 * pow (time, 2) + landing;   
-    
  }
  
  class Pair {
@@ -89,9 +90,9 @@ void mousePressed() {
 //y= height 
 
 //Pair pair = new Pair(); 
-//pair.x = mouseX; 
+//pair.x = mouseX;  
 //pair.y = landing;
-//coords.add(pair);
+// coords.add(pair);
 
 //creating a distance function from memory Game!! 
     
@@ -120,10 +121,11 @@ void drawDart (float xPosition, float yPosition){
   }
   
   fill(0);
-   ellipse(xPosition, yPosition, 10, 10);
+ // text("Good Job!",xPosition,yPosition);
+   //ellipse(xPosition, yPosition, 10, 10);
    for (int i = 0; i< coords.size(); i++){
      Pair pair = coords.get(i);
-     ellipse(pair.x, pair.y, 10, 10); 
-     
+     //ellipse(pair.x, pair.y, 10, 10); 
+     //text("Good Job!",300,100);
    }
 }
