@@ -1,0 +1,129 @@
+//Float time = distance/velocity
+//Distance= 20; 
+//Velocity = 110
+//float mouse X; 
+//float mouse y; 
+
+//float dartBoardRadius = ellipse(width/2,height/2,d ,d );
+   
+float time; 
+float r = 5;
+float distance = 60;
+float velocity = 30;
+ArrayList<Pair> coords = new ArrayList<Pair>(); 
+
+void setup() {
+  fill(255, 0, 10);
+  size(800,800); 
+  background(238, 111, 234);
+       
+  boolean black = false; 
+  int d = height/4;
+ 
+  while (d > 0) {
+    if (black) {
+      fill(255,0,0);
+      black = false;
+    } else {
+      fill(255);
+      black = true;
+    }
+    ellipse(width/2,height/2,d ,d );
+    d = d - 20;
+  }
+   
+  }
+
+//Y should be a positive, mouse X mouse y to stand for height
+
+void draw() {
+   
+   
+ }
+
+void keyPressed (){  
+  if (keyCode == UP){
+    velocity++;
+  }
+  if (keyCode == DOWN){
+    velocity--;
+  }
+  
+}
+
+
+void mousePressed() {
+  float landing = ycoord(velocity, distance, mouseY);
+  for( float yPos = mouseY; yPos <= landing; yPos++){
+    drawDart(mouseX, yPos);
+    //if (pair.x <= dartBoardRadius, landing >= dartBoardRadius, score++);
+    //^ this was a previous attempt to make the score happen when you hit the target
+     
+    }
+  Pair pair = new Pair(); 
+  pair.x=mouseX; 
+  pair.y = landing;
+  coords.add(pair);
+  
+}
+  
+ float ycoord(float velocity, float distance, float landing) { 
+    float time = distance/velocity; 
+    return 16 * pow (time, 2) + landing;   
+    
+ }
+ 
+ class Pair {
+ 
+  float x;
+  float y;
+ }
+ 
+ 
+ 
+ //possibly the right gravity solution??
+//y=y+speed;
+//speed=speed+gravity 
+//if (y>height){
+//speed=speed*5.5
+//y= height 
+
+//Pair pair = new Pair(); 
+//pair.x = mouseX; 
+//pair.y = landing;
+//coords.add(pair);
+
+//creating a distance function from memory Game!! 
+    
+  //for (i=0; i < 9; i++) {
+    //if (distance(Xbeep, Yboop, x[i], y[i]) <= 25) {
+      //return i;
+    //}
+ 
+void drawDart (float xPosition, float yPosition){
+  background(255, 0, 0);
+  text("velocity: " + velocity, 20, 20); 
+  
+  boolean black = false; 
+  int d = height/4;
+ 
+  while (d > 0) {
+    if (black) {
+      fill(255,0,0);
+      black = false;
+    } else {
+      fill(255);
+      black = true;
+    }
+    ellipse(width/2,height/2,d ,d );
+    d = d - 20;
+  }
+  
+  fill(0);
+   ellipse(xPosition, yPosition, 10, 10);
+   for (int i = 0; i< coords.size(); i++){
+     Pair pair = coords.get(i);
+     ellipse(pair.x, pair.y, 10, 10); 
+     
+   }
+}
